@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
-    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <style>
-        label {
+        #con {
             margin: 10px;
             font-size: 24px;
         }
@@ -23,49 +24,145 @@
             color: #000;
             word-wrap: break-word;
         }
+
+        #main {
+            text-align: center;
+            /*让div内部文字居中*/
+        }
+
+        #top img {
+            height: 130px;
+            margin: 0 auto;
+            border-radius: 100%;
+        }
+
+        #jxsp {
+            margin: 15px;
+        }
     </style>
 </head>
 
 <body>
-    <label>Hello APP</label>
-    <div id='sys-info'></div>
+    <div id="main">
+        <div id="top">
+            <img src="../image/tx.png">
+            <p>By:回忆菌</p>
+        </div>
+        <div id="st">
+            <div class="aui-searchbar" id="search">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input id="srk" type="search" placeholder="请输入抖音链接" id="search-input">
+                </div>
+            </div>
+            <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx();"><span class="aui-iconfont aui-icon-edit"></span>解析抖音视频</div>
+            <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于应用</div>
+        </div>
+        <div id="jxnr">
+
+
+        </div>
+    </div>
+
 </body>
+<script type="text/javascript" src="../script/jquery.js"></script>
 <script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui.js"></script>
 <script type="text/javascript">
     apiready = function() {
-        var ver = api.version;
-        var sType = api.systemType;
-        var sVer = api.systemVersion;
-        var id = api.deviceId;
-        var model = api.deviceModel;
-        var name = api.deviceName;
-        var cType = api.connectionType;
-        var winName = api.winName;
-        var winWidth = api.winWidth;
-        var winHeight = api.winHeight;
-        var frameName = api.frameName || '';
-        var frameWidth = api.frameWidth || '';
-        var frameHeight = api.frameHeight || '';
-
-        var str = '<ul>';
-        str += '<li>引擎版本信息: ' + ver + '</li>';
-        str += '<li>系统类型: ' + sType + '</li>';
-        str += '<li>系统版本: ' + sVer + '</li>';
-        str += '<li>设备标识: ' + id + '</li>';
-        str += '<li>设备型号: ' + model + '</li>';
-        str += '<li>设备名称: ' + name + '</li>';
-        str += '<li>网络状态: ' + cType + '</li>';
-        str += '<li>主窗口名字: ' + winName + '</li>';
-        str += '<li>主窗口宽度: ' + winWidth + '</li>';
-        str += '<li>主窗口高度: ' + winHeight + '</li>';
-        str += '<li>子窗口名字: ' + frameName + '</li>';
-        str += '<li>子窗口宽度: ' + frameWidth + '</li>';
-        str += '<li>子窗口高度: ' + frameHeight + '</li>';
-        str += '</ul>';
-
-        $api.byId('sys-info').innerHTML = str;
+        console.log('初始化完成!');
 
     };
+
+      function gy(){
+        api.alert({
+            title: '关于作者',
+            msg: 'By:回忆菌 \n\nQQ:1059703568\n\n微信:hy1059703568\n\n 本应用非二次解析 可能会不稳定!\n\n如果失效请联系作者 将会不定期修复!',
+        }, function(ret, err){
+
+        });
+
+      }
+
+
+    function jx() {
+        var spdz = "";
+        var nr = "";
+        var dz = "";
+        var ks = "";
+        var js = "";
+        dz = $('#srk').val();
+        api.ajax({
+            url: dz,
+            method: 'get',
+            dataType: 'text'
+        }, function(ret, err) {
+            if (ret) {
+                $("#jxnr").empty();
+                ks = ret.indexOf('src="https://aweme.snssdk.com/aweme/v1/playwm') + 45;
+                js = ret.indexOf('" preload=');
+                spdz = "https://aweme.snssdk.com/aweme/v1/play" + ret.slice(ks, js);
+                mcks = ret.indexOf('<div class="user-title">') + 24;
+                mcjs = ret.indexOf('</div><div class="user-avator" style=');
+                mc = ret.slice(mcks, mcjs);
+                console.log(spdz);
+                nr += '<div class="aui-card-list">';
+                nr += '<div class="aui-card-list-header">';
+                nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的视频</span></div>';
+                nr += '</div>';
+                nr += '<div class="aui-card-list-content">';
+                nr += '<ul class="aui-list aui-media-list">';
+                nr += '<li class="aui-list-item aui-list-item-middle" onclick="spbf(\'' + spdz + '\')">';
+                nr += '<div class="aui-media-list-item-inner">';
+                nr += '<div class="aui-list-item-media" style="width: 3rem;">';
+                nr += '<img src="../image/dy.jpg" class="aui-img-round">';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-inner aui-list-item-arrow">';
+                nr += '<div class="aui-list-item-text">';
+                nr += '<div class="aui-list-item-title aui-font-size-14">' + mc + '</div>';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-text">';
+                nr += spdz;
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</li>';
+                nr += '</ul>';
+                nr += '</div>';
+                nr += '</div>';
+                $("#jxnr").append(nr);
+                nr = "";
+            } else {
+                alert("解析失败!请联系作者修复!");
+                return;
+            }
+        });
+
+    }
+
+    function spbf(dz) {
+        console.log(dz);
+        var clipBoard = api.require('clipBoard');
+        clipBoard.set({
+            value: dz
+        }, function(ret, err) {
+            if (ret) {
+                api.toast({
+                    msg: '无水印视频地址已复制!',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+
+            } else {
+                alert("复制地址失败!请联系作者修复!");
+                return;
+            }
+        });
+        api.openVideo({
+            url: dz
+        });
+
+    }
 </script>
 
 </html>
