@@ -189,6 +189,11 @@
                 mcjs = ret.indexOf('</div><div class="user-avator" style=');
                 mc = ret.slice(mcks, mcjs);
 
+                console.log(ret);
+                if (ret.indexOf('该视频已删除，其他作品也同样精彩哦~') > 0) {
+                    alert("解析失败! 该视频已删除");
+                    return;
+                }
                 if (ret.indexOf('视频找不到了，看看其他精彩作品吧！') > 0) {
                     alert("解析失败! 可能是解析频率过快 请休息一下再试!");
                     return;
