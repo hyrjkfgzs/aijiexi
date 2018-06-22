@@ -36,8 +36,9 @@
             border-radius: 100%;
         }
 
-        #jxsp {
-            margin: 15px;
+        #ann {
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -45,18 +46,23 @@
 <body>
     <div id="main">
         <div id="top">
-            <img src="../image/tx.png">
+            <img src="../image/tx.png" onclick="qk();">
             <p>By:回忆菌</p>
         </div>
         <div id="st">
+
             <div class="aui-searchbar" id="search">
                 <div class="aui-searchbar-input aui-border-radius">
                     <i class="aui-iconfont aui-icon-search"></i>
                     <input id="srk" type="search" placeholder="请输入抖音链接" id="search-input">
                 </div>
             </div>
-            <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx();"><span class="aui-iconfont aui-icon-edit"></span>解析抖音视频</div>
-            <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于应用</div>
+
+            <div id="ann">
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx();"><span class="aui-iconfont aui-icon-edit"></span>解析抖音视频</div>
+                <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
+            </div>
+
         </div>
         <div id="jxnr">
 
@@ -74,15 +80,19 @@
 
     };
 
-      function gy(){
+    function qk() {
+        $('#srk').val("");
+    }
+
+    function gy() {
         api.alert({
             title: '关于作者',
-            msg: 'By:回忆菌 \n\nQQ:1059703568\n\n微信:hy1059703568\n\n 本应用非二次解析 可能会不稳定!\n\n如果失效请联系作者 将会不定期修复!',
-        }, function(ret, err){
+            msg: 'By:回忆菌 \n\nQQ:1059703568\n\n微信:hy1059703568\n\n当前的解析方法非二次解析 可能会不稳定!\n\n如果失效请联系作者 将会不定期修复!',
+        }, function(ret, err) {
 
         });
 
-      }
+    }
 
 
     function jx() {
@@ -105,6 +115,19 @@
                 mcks = ret.indexOf('<div class="user-title">') + 24;
                 mcjs = ret.indexOf('</div><div class="user-avator" style=');
                 mc = ret.slice(mcks, mcjs);
+
+                if (ret.indexOf('视频找不到了，看看其他精彩作品吧！') > 0) {
+                    alert("解析失败! 可能是解析频率过快 请休息一下再试!");
+                    return;
+                }
+                if (ks < 0) {
+                    alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
+                    return;
+                }
+                if (mcks < 0) {
+                    alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
+                    return;
+                }
                 console.log(spdz);
                 nr += '<div class="aui-card-list">';
                 nr += '<div class="aui-card-list-header">';
@@ -133,7 +156,7 @@
                 $("#jxnr").append(nr);
                 nr = "";
             } else {
-                alert("解析失败!请联系作者修复!");
+                alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }
         });
@@ -142,6 +165,9 @@
 
     function spbf(dz) {
         console.log(dz);
+        api.openVideo({
+            url: dz
+        });
         var clipBoard = api.require('clipBoard');
         clipBoard.set({
             value: dz
@@ -158,9 +184,7 @@
                 return;
             }
         });
-        api.openVideo({
-            url: dz
-        });
+
 
     }
 </script>
