@@ -59,8 +59,9 @@
             </div>
 
             <div id="ann">
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx();"><span class="aui-iconfont aui-icon-edit"></span>解析抖音视频</div>
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>解析方式01</div>
                 <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx2();"><span class="aui-iconfont aui-icon-edit"></span>解析方式02</div>
             </div>
 
         </div>
@@ -87,15 +88,73 @@
     function gy() {
         api.alert({
             title: '关于作者',
-            msg: 'By:回忆菌 \n\nQQ:1059703568\n\n微信:hy1059703568\n\n当前的解析方法非二次解析 可能会不稳定!\n\n如果失效请联系作者 将会不定期修复!',
+            msg: 'By:回忆菌 \n\nQQ:1059703568\n\n微信:hy1059703568\n\n解析方法01为非二次解析 可能会不稳定!\n\n解析方法02为二次解析 作者可能会改接口\n\n如果失效请联系作者 将会不定期修复!\n\n本应用使用 APICloud Studio 2 开发',
         }, function(ret, err) {
 
         });
 
     }
 
+    function jx2() {
+        var spdz = "";
+        var nr = "";
+        var dz = "";
+        var ks = "";
+        var js = "";
+        dz = $('#srk').val();
+        api.ajax({
+            url: 'https://tvlove.club/dy/api.php',
+            method: 'post',
+            data: {
+                values: {
+                    url: dz
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                if (ret.jsonCode != 1) {
+                    alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
+                    return;
+                }
+                mc = ret.title.slice(0, ret.title.indexOf("&nbsp;&nbsp;@"));
+                spdz = ret.video_url;
+                $("#jxnr").empty();
+                console.log(spdz);
+                nr += '<div class="aui-card-list">';
+                nr += '<div class="aui-card-list-header">';
+                nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的视频</span></div>';
+                nr += '</div>';
+                nr += '<div class="aui-card-list-content">';
+                nr += '<ul class="aui-list aui-media-list">';
+                nr += '<li class="aui-list-item aui-list-item-middle" onclick="spbf(\'' + spdz + '\')">';
+                nr += '<div class="aui-media-list-item-inner">';
+                nr += '<div class="aui-list-item-media" style="width: 3rem;">';
+                nr += '<img src="../image/dy.jpg" class="aui-img-round">';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-inner aui-list-item-arrow">';
+                nr += '<div class="aui-list-item-text">';
+                nr += '<div class="aui-list-item-title aui-font-size-14">' + mc + '</div>';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-text">';
+                nr += spdz;
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</li>';
+                nr += '</ul>';
+                nr += '</div>';
+                nr += '</div>';
+                $("#jxnr").append(nr);
+                nr = "";
+            } else {
+                alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
+                return;
+            }
+        });
 
-    function jx() {
+    }
+
+    function jx1() {
         var spdz = "";
         var nr = "";
         var dz = "";
