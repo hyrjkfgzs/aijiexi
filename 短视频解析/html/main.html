@@ -102,6 +102,11 @@
         var ks = "";
         var js = "";
         dz = $('#srk').val();
+        api.showProgress({
+            title: '正在获取',
+            text: '请稍后',
+            modal: true
+        });
         api.ajax({
             url: 'https://tvlove.club/dy/api.php',
             method: 'post',
@@ -113,6 +118,7 @@
         }, function(ret, err) {
             if (ret) {
                 if (ret.jsonCode != 1) {
+                  api.hideProgress();
                     alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                     return;
                 }
@@ -146,7 +152,9 @@
                 nr += '</div>';
                 $("#jxnr").append(nr);
                 nr = "";
+                api.hideProgress();
             } else {
+              api.hideProgress();
                 alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }
@@ -161,12 +169,18 @@
         var ks = "";
         var js = "";
         dz = $('#srk').val();
+        api.showProgress({
+            title: '正在获取',
+            text: '请稍后',
+            modal: true
+        });
         api.ajax({
             url: dz,
             method: 'get',
             dataType: 'text'
         }, function(ret, err) {
             if (ret) {
+               api.hideProgress();
                 $("#jxnr").empty();
                 ks = ret.indexOf('src="https://aweme.snssdk.com/aweme/v1/playwm') + 45;
                 js = ret.indexOf('" preload=');
@@ -214,7 +228,9 @@
                 nr += '</div>';
                 $("#jxnr").append(nr);
                 nr = "";
+                api.hideProgress();
             } else {
+              api.hideProgress();
                 alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }
