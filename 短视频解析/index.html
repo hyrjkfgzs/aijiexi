@@ -50,7 +50,7 @@
 <body>
     <div id="wrap">
         <div id="header">
-            <header class="aui-bar aui-bar-nav">抖音短视频解析</header>
+            <header class="aui-bar aui-bar-nav">抖音无水印视频解析</header>
         </div>
         <div id="main" class="flex-con">
 
@@ -76,11 +76,13 @@
             name: 'main',
             url: 'html/main.html',
             bounces: false,
+            allowEdit:true,
             rect: {
                 x: 0,
                 y: headerPos.h,
                 w: 'auto',
-                h: mainPos.h
+                h: mainPos.h,
+                allowEdit:true,
             }
         });
 
