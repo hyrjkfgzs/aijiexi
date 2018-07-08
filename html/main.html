@@ -52,6 +52,8 @@
         <div id="st">
 
             <div class="aui-searchbar" id="search">
+
+              
                 <div class="aui-searchbar-input aui-border-radius">
                     <i class="aui-iconfont aui-icon-search"></i>
                     <input id="srk" type="search" placeholder="请输入抖音链接" id="search-input">
@@ -86,6 +88,18 @@
     }
 
     function gy() {
+
+
+
+
+
+
+
+
+
+
+
+
         api.alert({
             title: '关于作者',
             msg: 'By:回忆菌 \n\n邮箱:hyrjkfgzs@vip.qq.com\n\n解析方法01为非二次解析 可能会不稳定!\n\n解析方法02为二次解析 作者可能会改接口\n\n如果失效请联系作者 将会不定期修复!\n\n本应用使用 APICloud Studio 2 开发',
@@ -179,7 +193,10 @@
             alert("地址不正确，请输入正确的抖音视频地址！");
             return;
           }
-
+          //原声 ～我的将军啊❤️
+          //https://www.iesdouyin.com/share/video/6560932029070839047/?region=CN&mid=6560932076162091783&titleType=title&utm_source=copy_link&utm_campaign=client_share&utm_medium=android&app=aweme&iid=37498120158&timestamp=1531058671
+          console.log(dz);
+          console.log(dz.slice(dz.indexOf('http'), dz.length));
         api.ajax({
             url: dz,
             method: 'get',
@@ -194,8 +211,6 @@
                 mcks = ret.indexOf('<div class="user-title">') + 24;
                 mcjs = ret.indexOf('</div><div class="user-avator" style=');
                 mc = ret.slice(mcks, mcjs);
-
-                console.log(ret);
                 if (ret.indexOf('该视频已删除，其他作品也同样精彩哦~') > 0) {
                     alert("解析失败! 该视频已删除");
                     return;
@@ -212,7 +227,6 @@
                     alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                     return;
                 }
-                console.log(spdz);
                 nr += '<div class="aui-card-list">';
                 nr += '<div class="aui-card-list-header">';
                 nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的视频</span></div>';
@@ -250,7 +264,6 @@
     }
 
     function spbf(dz) {
-        console.log(dz);
         api.openVideo({
             url: dz
         });
