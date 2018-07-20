@@ -50,24 +50,30 @@
             <p>回忆菌</p>
         </div>
         <div id="st">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input">
+                                <textarea id="srk"  placeholder="请输入抖音链接"></textarea>
+                            </div>
+                        </div>
+                    </li>
 
-            <div class="aui-searchbar" id="search">
-                <div class="aui-searchbar-input aui-border-radius">
-                    <i class="aui-iconfont aui-icon-search"></i>
-                    <input id="srk" type="search" placeholder="请输入抖音链接" id="search-input">
-                </div>
+                </ul>
             </div>
-            <div id="ann">
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>解析方式01</div>
-                <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx2();"><span class="aui-iconfont aui-icon-edit"></span>解析方式02</div>
-            </div>
-
         </div>
-        <div id="jxnr">
-
-
+        <div id="ann">
+            <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>解析方式01</div>
+            <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
+            <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx2();"><span class="aui-iconfont aui-icon-edit"></span>解析方式02</div>
         </div>
+
+    </div>
+    <div id="jxnr">
+
+
+    </div>
     </div>
 
 </body>
@@ -106,6 +112,7 @@
             text: '请稍后',
             modal: true
         });
+        dz=dz.slice(dz.indexOf('http'), dz.length);
         api.ajax({
             url: 'https://tvlove.club/dy/api.php',
             method: 'post',
@@ -117,7 +124,7 @@
         }, function(ret, err) {
             if (ret) {
                 if (ret.jsonCode != 1) {
-                  api.hideProgress();
+                    api.hideProgress();
                     alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                     return;
                 }
@@ -153,7 +160,7 @@
                 nr = "";
                 api.hideProgress();
             } else {
-              api.hideProgress();
+                api.hideProgress();
                 alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }
@@ -173,22 +180,20 @@
             text: '请稍后',
             modal: true
         });
-          if (dz.indexOf('aweme.snssdk.com')>0) {
+        if (dz.indexOf('aweme.snssdk.com') > 0) {
             api.hideProgress();
             alert("地址不正确，请输入正确的抖音视频地址！");
             return;
-          }
-          //原声 ～我的将军啊❤️
-          //https://www.iesdouyin.com/share/video/6560932029070839047/?region=CN&mid=6560932076162091783&titleType=title&utm_source=copy_link&utm_campaign=client_share&utm_medium=android&app=aweme&iid=37498120158&timestamp=1531058671
-          console.log(dz);
-          console.log(dz.slice(dz.indexOf('http'), dz.length));
+        }
+
+        dz=dz.slice(dz.indexOf('http'), dz.length);
         api.ajax({
             url: dz,
             method: 'get',
             dataType: 'text'
         }, function(ret, err) {
             if (ret) {
-               api.hideProgress();
+                api.hideProgress();
                 $("#jxnr").empty();
                 ks = ret.indexOf('src="https://aweme.snssdk.com/aweme/v1/playwm') + 45;
                 js = ret.indexOf('" preload=');
@@ -240,7 +245,7 @@
                 nr = "";
                 api.hideProgress();
             } else {
-              api.hideProgress();
+                api.hideProgress();
                 alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }

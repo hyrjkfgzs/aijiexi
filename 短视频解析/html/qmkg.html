@@ -50,17 +50,21 @@
             <p>回忆菌</p>
         </div>
         <div id="st">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input">
+                                <textarea id="srk" placeholder="请输入全民K歌链接"></textarea>
+                            </div>
+                        </div>
+                    </li>
 
-            <div class="aui-searchbar" id="search">
-                <div class="aui-searchbar-input aui-border-radius">
-                    <i class="aui-iconfont aui-icon-search"></i>
-                    <input id="srk" type="search" placeholder="请输入全民K歌链接" id="search-input">
-                </div>
+                </ul>
             </div>
             <div id="ann">
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>解析方式01</div>
-                <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx2();"><span class="aui-iconfont aui-icon-edit"></span>解析方式02</div>
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="qmjx();"><span class="aui-iconfont aui-icon-edit"></span>解析全民K歌</div>
+
             </div>
 
         </div>
@@ -69,11 +73,18 @@
 
         </div>
 </body>
+<script type="text/javascript" src="../script/jquery.js"></script>
 <script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui.js"></script>
 <script type="text/javascript">
     apiready = function() {
 
     };
+
+    function qk() {
+        $('#srk').val("");
+    }
+
     function gy() {
         api.alert({
             title: '关于作者',
@@ -81,8 +92,93 @@
         }, function(ret, err) {
 
         });
+    }
+
+    function qmjx() {
+        var spdz = "";
+        var nr = "";
+        var dz = "";
+        var ks = "";
+        var js = "";
+        dz = $('#srk').val();
+        api.showProgress({
+            title: '正在获取',
+            text: '请稍后',
+            modal: true
+        });
+        api.ajax({
+            url: dz,
+            method: 'get',
+            dataType: 'text',
+        }, function(ret, err) {
+            if (ret) {
+                //console.log(ret);
+                api.hideProgress();
+                $("#jxnr").empty();
+                ks = ret.indexOf('"playurl":"') + 11;
+                js = ret.indexOf('","playurl_video');
+                spdz = ret.slice(ks, js);
+                ks = ret.indexOf('"title":"') + 9;
+                js = ret.indexOf('","link":');
+                mc = ret.slice(ks, js);
+                nr += '<div class="aui-card-list">';
+                nr += '<div class="aui-card-list-header">';
+                nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的内容</span></div>';
+                nr += '</div>';
+                nr += '<div class="aui-card-list-content">';
+                nr += '<ul class="aui-list aui-media-list">';
+                nr += '<li class="aui-list-item aui-list-item-middle" onclick="spbf(\'' + spdz + '\')">';
+                nr += '<div class="aui-media-list-item-inner">';
+                nr += '<div class="aui-list-item-media" style="width: 3rem;">';
+                nr += '<img src="../image/qmkg.png" class="aui-img-round">';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-inner aui-list-item-arrow">';
+                nr += '<div class="aui-list-item-text">';
+                nr += '<div class="aui-list-item-title aui-font-size-14">' + mc + '</div>';
+                nr += '</div>';
+                nr += '<div class="aui-list-item-text">';
+                nr += spdz;
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</div>';
+                nr += '</li>';
+                nr += '</ul>';
+                nr += '</div>';
+                nr += '</div>';
+                $("#jxnr").append(nr);
+                nr = "";
+                api.hideProgress();
+
+            } else {
+                api.hideProgress();
+                alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
+                return;
+            }
+        });
+
 
     }
+    function spbf(dz) {
+        api.openVideo({
+            url: dz
+        });
+        var clipBoard = api.require('clipBoard');
+        clipBoard.set({
+            value: dz
+        }, function(ret, err) {
+            if (ret) {
+                api.toast({
+                    msg: '无水印视频地址已复制!',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+
+            } else {
+                alert("复制地址失败!请联系作者修复!");
+                return;
+            }
+        });
+      }
 </script>
 
 </html>
