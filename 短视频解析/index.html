@@ -106,6 +106,34 @@
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
 
+        api.appInstalled({
+            appBundle: 'com.hyrjkfgzs.doyinjiexi'
+        }, function(ret, err) {
+            if (ret.installed) {
+                //应用已安装
+                api.confirm({
+                    title: '提示：',
+                    msg: '检测到手机已安装旧版本,是否卸载旧版本？',
+                    buttons: ['确定', '取消']
+                }, function(ret, err) {
+                    if (ret) {
+                        if (ret.buttonIndex == 1) {
+                            api.uninstallApp({
+                                packageName: 'com.hyrjkfgzs.doyinjiexi'
+                            });
+                        }
+                    } else {
+                        alert("检测失败！请联系作者！");
+                    }
+                });
+
+            } else {
+                //应用未安装
+            }
+        });
+
+
+
         api.openFrameGroup({
             scrollEnabled: false,
             name: 'group1',
@@ -144,7 +172,7 @@
             index: 0
         });
         $('#d').attr('class', 'aui-bar-tab-item aui-active');
-          $('#q').attr('class', 'aui-bar-tab-item');
+        $('#q').attr('class', 'aui-bar-tab-item');
     }
 
     function qm() {
@@ -153,11 +181,10 @@
             name: 'group1',
             index: 1
         });
-          $('#d').attr('class', 'aui-bar-tab-item');
-            $('#q').attr('class', 'aui-bar-tab-item aui-active');
+        $('#d').attr('class', 'aui-bar-tab-item');
+        $('#q').attr('class', 'aui-bar-tab-item aui-active');
 
     }
-
 </script>
 
 </html>
