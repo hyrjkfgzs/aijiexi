@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>全民K歌</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        #con {
+            margin: 10px;
+            font-size: 24px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+        }
+
+        ul li {
+            margin: 5px 10px;
+            padding: 5px;
+            color: #000;
+            word-wrap: break-word;
+        }
+
+        #main {
+            text-align: center;
+            /*让div内部文字居中*/
+        }
+
+        #top img {
+            height: 130px;
+            margin: 0 auto;
+            border-radius: 100%;
+        }
+
+        #ann {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <div id="top">
+            <img src="../image/tx.png" onclick="qk();">
+            <p>回忆菌</p>
+        </div>
+        <div id="st">
+
+            <div class="aui-searchbar" id="search">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input id="srk" type="search" placeholder="请输入全民K歌链接" id="search-input">
+                </div>
+            </div>
+            <div id="ann">
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>解析方式01</div>
+                <div class="aui-btn aui-btn-info" onclick="gy();"><span class="aui-iconfont aui-icon-edit"></span>关于信息</div>
+                <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx2();"><span class="aui-iconfont aui-icon-edit"></span>解析方式02</div>
+            </div>
+
+        </div>
+        <div id="jxnr">
+
+
+        </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+    function gy() {
+        api.alert({
+            title: '关于作者',
+            msg: 'By:回忆菌 \n\n邮箱:hyrjkfgzs@vip.qq.com\n\n本应用使用 APICloud Studio 2 开发',
+        }, function(ret, err) {
+
+        });
+
+    }
+</script>
+
+</html>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>Hello APP</title>
+    <title>爱解析</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
     <link rel="stylesheet" type="text/css" href="./css/aui.css" />
     <style type="text/css">
@@ -78,11 +78,11 @@
         </div>
         <div id="wb">
             <footer class="aui-bar aui-bar-tab">
-                <div class="aui-bar-tab-item aui-active" tapmode>
+                <div id="d" onclick="dy();" class="aui-bar-tab-item aui-active" tapmode>
                     <i class="aui-iconfont aui-icon-star"></i>
                     <div class="aui-bar-tab-label">抖音视频</div>
                 </div>
-                <div class="aui-bar-tab-item" tapmode>
+                <div id="q" onclick="qm();" class="aui-bar-tab-item" tapmode>
                     <i class="aui-iconfont aui-icon-star"></i>
                     <div class="aui-bar-tab-label">全民K歌</div>
                 </div>
@@ -105,30 +105,59 @@
         var headerPos = $api.offset(header);
         var main = $api.byId('main');
         var mainPos = $api.offset(main);
-        api.openFrame({
-            name: 'main',
-            url: 'html/main.html',
-            bounces: false,
-            allowEdit: true,
+
+        api.openFrameGroup({
+            scrollEnabled: false,
+            name: 'group1',
             rect: {
                 x: 0,
-                y: headerPos.h,
+                y: 60,
                 w: 'auto',
                 h: mainPos.h - 60,
+            },
+            frames: [{
+                name: 'main',
+                url: './html/main.html',
+                bgColor: '#fff',
                 allowEdit: true,
-            }
+            }, {
+                name: 'qmkg',
+                url: './html/qmkg.html',
+                bgColor: '#fff',
+                allowEdit: true
+            }, {
+                name: 'sz',
+                url: './html/sz.html',
+                bgColor: '#fff',
+                allowEdit: true
+            }]
+        }, function(ret, err) {
+            var index = 0;
         });
 
-        function dy() {
-          //切换抖音解析界面
-        }
-
-        function qm() {
-          //切换全民K歌界面
-
-        }
-
     };
+
+    function dy() {
+        //切换抖音解析界面
+        api.setFrameGroupIndex({
+            name: 'group1',
+            index: 0
+        });
+        $('#d').attr('class', 'aui-bar-tab-item aui-active');
+          $('#q').attr('class', 'aui-bar-tab-item');
+    }
+
+    function qm() {
+        //切换全民K歌界面
+        api.setFrameGroupIndex({
+            name: 'group1',
+            index: 1
+        });
+          $('#d').attr('class', 'aui-bar-tab-item');
+            $('#q').attr('class', 'aui-bar-tab-item aui-active');
+
+    }
+
 </script>
 
 </html>
