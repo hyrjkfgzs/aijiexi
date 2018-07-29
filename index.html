@@ -86,6 +86,10 @@
                     <i class="aui-iconfont aui-icon-star"></i>
                     <div class="aui-bar-tab-label">全民K歌</div>
                 </div>
+                <div id="h" onclick="hs();" class="aui-bar-tab-item" tapmode>
+                    <i class="aui-iconfont aui-icon-star"></i>
+                    <div class="aui-bar-tab-label">火山小视频</div>
+                </div>
             </footer>
         </div>
 
@@ -154,8 +158,8 @@
                 bgColor: '#fff',
                 allowEdit: true
             }, {
-                name: 'sz',
-                url: './html/sz.html',
+                name: 'hsxsp',
+                url: './html/hsxsp.html',
                 bgColor: '#fff',
                 allowEdit: true
             }]
@@ -173,6 +177,7 @@
         });
         $('#d').attr('class', 'aui-bar-tab-item aui-active');
         $('#q').attr('class', 'aui-bar-tab-item');
+        $('#h').attr('class', 'aui-bar-tab-item');
     }
 
     function qm() {
@@ -183,6 +188,18 @@
         });
         $('#d').attr('class', 'aui-bar-tab-item');
         $('#q').attr('class', 'aui-bar-tab-item aui-active');
+        $('#h').attr('class', 'aui-bar-tab-item');
+
+    }
+    function hs() {
+        //切换全民K歌界面
+        api.setFrameGroupIndex({
+            name: 'group1',
+            index: 2
+        });
+        $('#d').attr('class', 'aui-bar-tab-item');
+        $('#q').attr('class', 'aui-bar-tab-item');
+        $('#h').attr('class', 'aui-bar-tab-item aui-active');
 
     }
 </script>

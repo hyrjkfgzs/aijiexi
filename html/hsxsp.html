@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-    <title>全民K歌</title>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>爱解析</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <style>
@@ -40,7 +41,6 @@
             margin-bottom: 15px;
         }
     </style>
-
 </head>
 
 <body>
@@ -55,29 +55,32 @@
                     <li class="aui-list-item">
                         <div class="aui-list-item-inner">
                             <div class="aui-list-item-input">
-                                <textarea id="srk" placeholder="请输入全民K歌链接"></textarea>
+                                <textarea id="srk" placeholder="请输入火山小视频链接"></textarea>
                             </div>
                         </div>
                     </li>
 
                 </ul>
             </div>
-            <div id="ann">
-                <div id="jxsp" class="aui-btn aui-btn-info" onclick="qmjx();"><span class="aui-iconfont aui-icon-edit"></span>全民K歌解析</div>
-
-            </div>
-
         </div>
-        <div id="jxnr">
-
-
+        <div id="ann">
+            <div id="jxsp" class="aui-btn aui-btn-info" onclick="jx1();"><span class="aui-iconfont aui-icon-edit"></span>火山小视频解析</div>
         </div>
+
+    </div>
+    <div id="jxnr">
+
+
+    </div>
+    </div>
+
 </body>
 <script type="text/javascript" src="../script/jquery.js"></script>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/aui.js"></script>
 <script type="text/javascript">
     apiready = function() {
+        console.log('初始化完成!');
 
     };
 
@@ -85,16 +88,9 @@
         $('#srk').val("");
     }
 
-    function gy() {
-        api.alert({
-            title: '关于作者',
-            msg: 'By:回忆菌 \n\n邮箱:hyrjkfgzs@vip.qq.com\n\n有BUG请联系作者！\n\n本应用使用 APICloud Studio 2 开发',
-        }, function(ret, err) {
 
-        });
-    }
-
-    function qmjx() {
+    function jx1() {
+        var lssj = "";
         var spdz = "";
         var nr = "";
         var dz = "";
@@ -106,44 +102,49 @@
             text: '请稍后',
             modal: true
         });
+
+        if (dz.indexOf('reflow.huoshan.com') < 0) {
+            api.hideProgress();
+            alert("地址不正确，请输入正确的火山小视频地址！");
+            return;
+        }
+        dz = dz.slice(dz.indexOf('http'), dz.length);
         api.ajax({
             url: dz,
             method: 'get',
             dataType: 'text',
+            headers: {
+                "User-Agent": 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.4843.400 QQBrowser/9.7.13021.400'
+            }
         }, function(ret, err) {
             if (ret) {
-                //console.log(ret);
-                dz = dz.slice(dz.indexOf('http'), dz.length);
                 api.hideProgress();
                 $("#jxnr").empty();
-                ks = ret.indexOf('"playurl":"') + 11;
-                js = ret.indexOf('","playurl_video');
-                if (ks <= 11) {
+
+                ks = ret.indexOf('create({d:') + 10;
+                js = ret.indexOf('})');
+                lssj = ret.slice(ks, js);
+                if (ks <= 10) {
                     alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                     return;
                 }
-                spdz = ret.slice(ks, js);
-                ks = ret.indexOf('"title":"') + 9;
-                js = ret.indexOf('","link":');
-                if (ks <= 9) {
+                if (ks <= 0) {
                     alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                     return;
                 }
-                mc = ret.slice(ks, js);
-                if (mc == "") {
-                    alert("解析失败!可能是链接问题! 如果一直这样请联系作者!");
-                    return;
-                }
+                lssj = eval("(" + lssj + ")");
+                mc = lssj.author.signature
+                spdz = lssj.video.url_list[0]
                 nr += '<div class="aui-card-list">';
                 nr += '<div class="aui-card-list-header">';
-                nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的内容</span></div>';
+                nr += '<div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger">解析的视频</span></div>';
                 nr += '</div>';
                 nr += '<div class="aui-card-list-content">';
                 nr += '<ul class="aui-list aui-media-list">';
                 nr += '<li class="aui-list-item aui-list-item-middle" onclick="spbf(\'' + spdz + '\')">';
                 nr += '<div class="aui-media-list-item-inner">';
                 nr += '<div class="aui-list-item-media" style="width: 3rem;">';
-                nr += '<img src="../image/qmkg.png" class="aui-img-round">';
+                nr += '<img src="../image/hs.png" class="aui-img-round">';
                 nr += '</div>';
                 nr += '<div class="aui-list-item-inner aui-list-item-arrow">';
                 nr += '<div class="aui-list-item-text">';
@@ -161,14 +162,12 @@
                 $("#jxnr").append(nr);
                 nr = "";
                 api.hideProgress();
-
             } else {
                 api.hideProgress();
                 alert("解析失败!可能是网络问题! 如果一直这样请联系作者!");
                 return;
             }
         });
-
 
     }
 
@@ -192,6 +191,8 @@
                 return;
             }
         });
+
+
     }
 </script>
 

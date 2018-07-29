@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>麻辣海鲜??笨笨??的视频</title>
+    <script>
+        ! function(t, e) {
+            "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Slardar = e() : t.Slardar = e()
+        }("undefined" != typeof self ? self : this, function() {
+            return function(t) {
+                function e(o) {
+                    if (n[o]) return n[o].exports;
+                    var r = n[o] = {
+                        i: o,
+                        l: !1,
+                        exports: {}
+                    };
+                    return t[o].call(r.exports, r, r.exports, e), r.l = !0, r.exports
+                }
+                var n = {};
+                return e.m = t, e.c = n, e.d = function(t, n, o) {
+                    e.o(t, n) || Object.defineProperty(t, n, {
+                        configurable: !1,
+                        enumerable: !0,
+                        get: o
+                    })
+                }, e.n = function(t) {
+                    var n = t && t.__esModule ? function() {
+                        return t.default
+                    } : function() {
+                        return t
+                    };
+                    return e.d(n, "a", n), n
+                }, e.o = function(t, e) {
+                    return Object.prototype.hasOwnProperty.call(t, e)
+                }, e.p = "", e(e.s = 1)
+            }([function(t, e) {
+                function n(t) {
+                    return "object" == typeof t && null !== t
+                }
+
+                function o(t) {
+                    return "function" == typeof t
+                }
+
+                function r(t) {
+                    return "[object String]" === Object.prototype.toString.call(t)
+                }
+
+                function a(t) {
+                    return "[object Array]" === Object.prototype.toString.call(t)
+                }
+
+                function i(t) {
+                    return "[object Date]" === Object.prototype.toString.call(t)
+                }
+
+                function s(t) {
+                    return void 0 === t
+                }
+
+                function c(t, e) {
+                    return Object.prototype.hasOwnProperty.call(t, e)
+                }
+
+                function u(t, e) {
+                    var n, o;
+                    if (s(t.length))
+                        for (n in t) c(t, n) && e.call(null, n, t[n]);
+                    else if (o = t.length)
+                        for (n = 0; n < o; n++) e.call(null, n, t[n])
+                }
+
+                function f(t) {
+                    for (var e in t)
+                        if (t.hasOwnProperty(e)) return !1;
+                    return !0
+                }
+
+                function l(t) {
+                    for (var e, n = [], o = 0, a = t.length; o < a; o++) e = t[o], r(e) ? n.push(e.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1")) : e && e.source && n.push(e.source);
+                    return new RegExp(n.join("|"), "i")
+                }
+
+                function p(t) {
+                    var e = document.createElement("a");
+                    e.href = t;
+                    var n = e.pathname || "/";
+                    return "/" !== n[0] && (n = "/" + n), {
+                        protocol: e.protocol.slice(0, -1),
+                        hostname: e.hostname,
+                        pathname: n
+                    }
+                }
+
+                function d(t) {
+                    var e = [];
+                    return u(t, function(t, n) {
+                        e.push(encodeURIComponent(t) + "=" + encodeURIComponent(n))
+                    }), e.join("&")
+                }
+
+                function h() {
+                    return +new Date
+                }
+
+                function m(t) {
+                    var e = t.offsetTop;
+                    return null !== t.offsetParent && (e += m(t.offsetParent)), e
+                }
+
+                function g() {
+                    return window.innerHeight ? window.innerHeight : document.documentElement && document.documentElement.clientHeight ? document.documentElement.clientHeight : void 0
+                }
+                t.exports = {
+                    isObject: n,
+                    isFunction: o,
+                    isString: r,
+                    isArray: a,
+                    isDate: i,
+                    each: u,
+                    isEmptyObject: f,
+                    joinRegExp: l,
+                    urlParser: p,
+                    urlencode: d,
+                    now: h,
+                    getOffsetTop: m,
+                    getWinHeight: g
+                }
+            }, function(t, e, n) {
+                t.exports = n(2)
+            }, function(t, e, n) {
+                var o = n(3),
+                    r = new o;
+                t.exports = r
+            }, function(t, e, n) {
+                function o() {
+                    this._baseParams = {}, this._globalOptions = {
+                        sampleRate: 1,
+                        domain: _,
+                        hookFetch: !1,
+                        enableSizeStats: !1
+                    }, this.recordCtx = {
+                        __firstScreenLoadEndTime: 0
+                    }
+                }
+                var r = n(4),
+                    a = n(5),
+                    i = n(7),
+                    s = n(8),
+                    c = n(0),
+                    u = c.isObject,
+                    f = c.isArray,
+                    l = c.each,
+                    p = c.isEmptyObject,
+                    d = c.urlencode,
+                    h = c.joinRegExp,
+                    m = c.now,
+                    g = ["h", "/", "u", "a", "co"],
+                    _ = g[0] + "ttps:/" + g[1] + "m.to" + g[2] + "ti" + g[3] + "o." + g[4] + "m";
+                o.prototype = {
+                    VERSION: "1.0.1",
+                    install: function(t) {
+                        var e = this,
+                            n = e._baseParams,
+                            o = e._globalOptions,
+                            c = t.hookFetch || !1,
+                            l = t.enableSizeStats || !1;
+                        if (_ = t.domain || _, o.ignoreStatic = ["/log/sentry/"], o.ignoreAjax = ["/log/sentry/"], o.domain = _, o.hookFetch = c, o.enableSizeStats = l, e._baseEnvCheck() && u(t) && !p(t) && t.bid && t.pid) {
+                            n.version = this.VERSION, n.bid = t.bid, n.pid = t.pid, n.hostname = window.location.hostname, n.protocol = window.location.protocol.slice(0, -1), o.sampleRate = t.sampleRate || 1;
+                            for (var d = ["ignoreStatic", "ignoreAjax"], m = 0, g = d.length; m < g; m++) {
+                                var y = d[m],
+                                    v = t[y];
+                                f(v) && (o[y] = o[y].concat(v)), o[y] = !!o[y].length && h(o[y])
+                            }
+                            a.start(this.recordCtx), i.start(function() {
+                                e._send.apply(e, arguments)
+                            }, this.recordCtx), r.start(function() {
+                                e._send.apply(e, arguments)
+                            }, o.ignoreStatic), s.start(function() {
+                                e._send.apply(e, arguments)
+                            }, o.ignoreAjax, {
+                                fetch: c,
+                                size: l
+                            })
+                        }
+                    },
+                    sendCustomTimeLog: function(t, e, n) {
+                        if (t) {
+                            var o = {
+                                ev_type: "custom",
+                                cm_name: t,
+                                cm_type: "time"
+                            };
+                            e && (o.cm_tag = e), +n && (o.cm_value = +n, this._send(o, !0))
+                        }
+                    },
+                    sendCustomCountLog: function(t, e) {
+                        if (t) {
+                            var n = {
+                                ev_type: "custom",
+                                cm_name: t,
+                                cm_type: "count"
+                            };
+                            e && (n.cm_tag = e), this._send(n, !0)
+                        }
+                    },
+                    _send: function(t, e) {
+                        var n = this._globalOptions,
+                            o = this._paramsPack(t);
+                        o && ("number" == typeof n.sampleRate ? Math.random() < n.sampleRate && this._makeRequest(o, e) : this._makeRequest(o, e))
+                    },
+                    _makeRequest: function(t, e) {
+                        var n = new Image,
+                            o = _ + (e ? "/log/sentry/v2/api/slardar/custom/?" : "/log/sentry/v2/api/slardar/main/?");
+                        n.src = o + t
+                    },
+                    _paramsPack: function(t) {
+                        return !u(t) || p(t) ? null : (l(this._baseParams, function(e, n) {
+                            t[e] = n
+                        }), t.timestamp = m(), d(t))
+                    },
+                    _baseEnvCheck: function() {
+                        return !!window.addEventListener
+                    }
+                }, t.exports = o
+            }, function(t, e, n) {
+                var o = n(0),
+                    r = o.urlParser,
+                    a = {
+                        start: function(t, e) {
+                            function n(t, e) {
+                                var n = {
+                                        ev_type: "static",
+                                        st_type: e
+                                    },
+                                    o = r(t);
+                                return n.st_protocol = o.protocol, n.st_domain = o.hostname, n.st_domain ? ("script" !== e && "link" !== e || (n.st_path = o.pathname), "img" !== e || o.pathname && "/" !== o.pathname ? n : null) :
+                                    null
+                            }
+
+                            function o(o) {
+                                var r = o || window.event || {},
+                                    a = {};
+                                try {
+                                    a = r.target || r.srcElement || {}
+                                } catch (r) {
+                                    return
+                                }
+                                var i = a.src || a.href || "",
+                                    s = a.tagName && a.tagName.toLowerCase() || "";
+                                i && s && i !== window.location.href && (e && e.test(i) || t && t(n(i, s)))
+                            }
+                            window.addEventListener("error", o, !0)
+                        }
+                    };
+                t.exports = a
+            }, function(t, e, n) {
+                var o = n(0),
+                    r = n(6),
+                    a = o.getOffsetTop,
+                    i = o.getWinHeight,
+                    s = o.now,
+                    c = r.raf,
+                    u = r.caf,
+                    f = {
+                        start: function(t) {
+                            function e() {
+                                var i, p;
+                                if (f) {
+                                    if (r.length && !l)
+                                        for (i = 0; i < r.length; i++) {
+                                            if (p = r[i], !p.complete) {
+                                                l = !1;
+                                                break
+                                            }
+                                            l = !0
+                                        } else l = !0;
+                                    if (l) return t.__firstScreenLoadEndTime || (t.__firstScreenLoadEndTime = s()), void u(n)
+                                } else {
+                                    var d = document.querySelectorAll("img");
+                                    for (i = 0; i < d.length; i++) {
+                                        p = d[i];
+                                        var h = a(p);
+                                        if (h > o) {
+                                            f = !0;
+                                            break
+                                        }
+                                        h <= o && !p.hasPushed && (p.hasPushed = 1, r.push(p))
+                                    }
+                                }
+                                n = c(e)
+                            }
+                            var n, o = i(),
+                                r = [],
+                                f = !1,
+                                l = !1;
+                            n = c(e), document.addEventListener("DOMContentLoaded", function() {
+                                document.querySelectorAll("img").length || (f = !0, u(n), e())
+                            }), window.addEventListener("load", function() {
+                                l = !0, f = !0, u(n), e()
+                            }, !1)
+                        }
+                    };
+                t.exports = f
+            }, function(t, e) {
+                for (var n = 0, o = ["ms", "moz", "webkit", "o"], r = window.requestAnimationFrame, a = window.cancelAnimationFrame, i = 0; i < o.length && !r; ++i) r = window[o[i] + "RequestAnimationFrame"], a = window[o[i] +
+                    "CancelAnimationFrame"] || window[o[i] + "CancelRequestAnimationFrame"];
+                r || (r = function(t, e) {
+                    var o = (new Date).getTime(),
+                        r = Math.max(0, 16 - (o - n)),
+                        a = window.setTimeout(function() {
+                            t(o + r)
+                        }, r);
+                    return n = o + r, a
+                }), a || (a = function(t) {
+                    clearTimeout(t)
+                }), t.exports = {
+                    raf: r,
+                    caf: a
+                }
+            }, function(t, e, n) {
+                var o = n(0),
+                    r = o.isObject,
+                    a = window.performance,
+                    i = {
+                        start: function(t, e) {
+                            function n() {
+                                var t = {
+                                        ev_type: "perf"
+                                    },
+                                    n = a.timing;
+                                return t.dns = n.domainLookupEnd - n.domainLookupStart, t.tcp = n.connectEnd - n.connectStart, t.request = n.responseStart - n.requestStart, t.response = n.responseEnd - n.responseStart, t.processing =
+                                    n.domComplete - n.domLoading, t.blank = n.responseEnd - n.navigationStart, t.domready = n.domInteractive - n.navigationStart, t.load = n.loadEventEnd - n.navigationStart, t.firstscreen = e.__firstScreenLoadEndTime ?
+                                    e.__firstScreenLoadEndTime - n.navigationStart : t.domready, t
+                            }
+
+                            function o() {
+                                t && t(n())
+                            }
+                            r(a) && window.addEventListener("load", function() {
+                                setTimeout(o, 1500)
+                            }, !1)
+                        }
+                    };
+                t.exports = i
+            }, function(t, e, n) {
+                var o = n(0),
+                    r = o.urlParser,
+                    a = o.now,
+                    i = window.XMLHttpRequest,
+                    s = {
+                        start: function(t, e, n) {
+                            function s(n, o) {
+                                if (!(e && e.test(o) || 0 === n.ax_status)) {
+                                    var a = r(o);
+                                    n.ax_protocol = a.protocol, n.ax_domain = a.hostname, n.ax_path = a.pathname, n.ax_domain && t && t(n)
+                                }
+                            }
+
+                            function c(t) {
+                                var e = "[object String]" === Object.prototype.toString.call(t);
+                                return t ? e ? t.length : window.ArrayBuffer && t instanceof ArrayBuffer ? t.byteLength : window.Blob && t instanceof Blob ? t.size : t.length ? t.length : 0 : 0
+                            }
+
+                            function u(t, e, n, o, r) {
+                                return this._url = e && e.split("?")[0] || "", this._method = t && t.toLowerCase() || "", d.apply(this, arguments)
+                            }
+
+                            function f(t) {
+                                if (4 === this.readyState) {
+                                    var e = {
+                                        ev_type: "ajax",
+                                        ax_status: this.status,
+                                        ax_type: this._method
+                                    };
+                                    if (200 === this.status)
+                                        if (e.ax_duration = a() - this._start, "" === this.responseType || "text" === this.responseType) e.ax_size = c(this.responseText);
+                                        else if (this.response) e.ax_size = c(this.response);
+                                    else try {
+                                        e.ax_size = c(this.responseText)
+                                    } catch (t) {}
+                                    s(e, this._url)
+                                }
+                                if (this._onreadystatechange) return this._onreadystatechange.apply(this, arguments)
+                            }
+
+                            function l(t) {
+                                return this.onreadystatechange && (this._onreadystatechange = this.onreadystatechange), this.onreadystatechange = f, this._start = a(), h.apply(this, arguments)
+                            }
+
+                            function p(t, e) {
+                                function r() {
+                                    l(function() {
+                                        s(c, u)
+                                    })
+                                }
+                                e = e || {};
+                                var i = a(),
+                                    c = {
+                                        ev_type: "ajax"
+                                    },
+                                    u = "",
+                                    f = "get";
+                                t instanceof Request ? (u = t.url, f = t.method) : u = t, u = o.isString(u) ? u.split("?")[0] : u, c.ax_type = (e.method || f).toLowerCase();
+                                var l = self.requestIdleCallback || setTimeout;
+                                return m.apply(null, arguments).then(function(t) {
+                                    if (c.ax_status = t.status, c.ax_duration = a() - i, t.headers.has("content-length")) c.ax_size = t.headers.get("content-length") || 0, r();
+                                    else {
+                                        if (n.size) return l(function() {
+                                            t.blob().then(function(t) {
+                                                c.ax_size = t.size, s(c, u)
+                                            })
+                                        }), t.clone();
+                                        c.ax_size = 0, r()
+                                    }
+                                    return t
+                                }, function(t) {
+                                    return c.ax_status = 0, c.ax_size = 0, c.ax_duration = a() - i, r(), Promise.reject(t)
+                                })
+                            }
+                            if ("function" == typeof i) {
+                                var d = i.prototype.open,
+                                    h = i.prototype.send;
+                                if (i.prototype.open = u, i.prototype.send = l, "function" == typeof self.fetch && n.fetch && !self.fetch.polyfill && !self.fetch.prototype) {
+                                    var m = self.fetch;
+                                    self.fetch = p
+                                }
+                            }
+                        }
+                    };
+                t.exports = s
+            }])
+        });
+    </script>
+    <script>
+        // slardar 性能监测 window.Slardar && window.Slardar.install({ sampleRate: 0.5, // 采样率 (0, 1] bid: 'huoshan_reflow', // 业务标识 pid: 'reflow_video', // 页面标识 ignoreStatic: [/\.google-analytics\.com\//] });
+    </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1,maximum-scale=1,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="火山、直播、火山直播官网、huoshan、huoshanzhibo">
+    <meta name="description" content="这是我私藏的视频。一般人我才不分享！">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    <meta name="pathname" content="hotsoon_mobile_video">
+    <link rel="apple-touch-icon-precomposed" href="//s3a.bytecdn.cn/huoshan/resource/reflow/static/image/hotsoon_2388245.png">
+    <link rel="shortcut icon" href="//s3.bytecdn.cn/huoshan/resource/reflow/static/image/favicon_97c69de.ico" type="image/x-icon">
+    <link rel="dns-prefetch" href="//s3.bytecdn.cn/">
+    <link rel="dns-prefetch" href="//s3a.bytecdn.cn/">
+    <link rel="dns-prefetch" href="//s3b.bytecdn.cn/">
+    <link rel="dns-prefetch" href="//s0.pstatp.com/">
+    <link rel="dns-prefetch" href="//s1.pstatp.com/">
+    <link rel="dns-prefetch" href="//s2.pstatp.com/">
+    <script>
+        ! function() {
+            function e(e) {
+                return this.config = e, this
+            }
+            e.prototype = {
+                reset: function() {
+                    var e = this.config && this.config.baseline && !isNaN(this.config.baseline) ? this.config.baseline : 750,
+                        n = Math.min(document.documentElement.clientWidth, e) / e * 100;
+                    document.documentElement.style.fontSize = n + "px";
+                    var t = parseFloat(window.getComputedStyle(document.documentElement).fontSize),
+                        o = n / t;
+                    1 != o && (document.documentElement.style.fontSize = n * o + "px")
+                }
+            }, window.Adapter = new e(window.ADAPTER_CONF || {}), window.Adapter.reset(), window.onload = function() {
+                window.Adapter.reset()
+            }, window.onresize = function() {
+                window.Adapter.reset()
+            }
+        }();
+    </script>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block
+        }
+
+        body {
+            line-height: 1
+        }
+
+        ol,
+        ul {
+            list-style: none
+        }
+
+        blockquote,
+        q {
+            quotes: none
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        html {
+            font-size: 100px
+        }
+
+        body {
+            font-size: 12px;
+            -webkit-text-size-adjust: 100%!important
+        }
+
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, STHeiti, 'Microsoft YaHei', Helvetica, Arial, sans-serif
+        }
+
+        :not(input, textarea) {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family: iconfont;
+            src: url(//s3a.bytecdn.cn/huoshan/resource/reflow/static/font/iconfont_9eadf2f.eot);
+            src: url(//s3a.bytecdn.cn/huoshan/resource/reflow/static/font/iconfont_9eadf2f.eot#iefix) format('embedded-opentype'), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/font/iconfont_9eb9a50.woff) format('woff'), url(//s3a.bytecdn.cn/huoshan/resource/reflow/static/font/iconfont_da2e2ef.ttf) format('truetype'), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/font/iconfont_31180f7.svg#iconfont) format('svg')
+        }
+
+        .iconfont {
+            font-family: iconfont!important;
+            font-size: .24rem;
+            font-style: normal;
+            letter-spacing: -.045rem;
+            margin-left: -.085rem
+        }
+
+        @font-face {
+            font-family: icons;
+            src: url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/iconfont_2f1b1cd.eot);
+            src: url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/iconfont_2f1b1cd.eot#iefix) format('embedded-opentype'), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/iconfont_87ad39c.woff) format('woff'), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/iconfont_5848858.ttf) format('truetype'), url(//s3a.bytecdn.cn/huoshan/resource/reflow/static/icons/iconfont_20c7f77.svg#iconfont) format('svg')
+        }
+
+        .icons {
+            font-family: icons!important;
+            font-size: .24rem;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: .2px;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        @font-face {
+            font-family: Ies;
+            src: url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/Ies_317064f.woff2?ba9fc668cd9544e80b6f5998cdce1672) format("woff2"), url(//s3a.bytecdn.cn/huoshan/resource/reflow/static/icons/Ies_a07f3d4.woff?ba9fc668cd9544e80b6f5998cdce1672) format("woff"), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/Ies_4c0d8be.ttf?ba9fc668cd9544e80b6f5998cdce1672) format("truetype"), url(//s3.bytecdn.cn/huoshan/resource/reflow/static/icons/Ies_1ac3f94.svg?ba9fc668cd9544e80b6f5998cdce1672#Ies) format("svg")
+        }
+
+        i {
+            line-height: 1
+        }
+
+        i[class^=ies-]:before,
+        i[class*=" ies-"]:before {
+            font-family: Ies!important;
+            font-style: normal;
+            font-weight: 400!important;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        .ies-checked:before {
+            content: "\f101"
+        }
+
+        .ies-chevron-left:before {
+            content: "\f102"
+        }
+
+        .ies-chevron-right:before {
+            content: "\f103"
+        }
+
+        .ies-clear:before {
+            content: "\f104"
+        }
+
+        .ies-close:before {
+            content: "\f105"
+        }
+
+        .ies-copy:before {
+            content: "\f106"
+        }
+
+        .ies-delete:before {
+            content: "\f107"
+        }
+
+        .ies-edit:before {
+            content: "\f108"
+        }
+
+        .ies-help-circle:before {
+            content: "\f109"
+        }
+
+        .ies-info:before {
+            content: "\f10a"
+        }
+
+        .ies-loading:before {
+            content: "\f10b"
+        }
+
+        .ies-location:before {
+            content: "\f10c"
+        }
+
+        .ies-paste:before {
+            content: "\f10d"
+        }
+
+        .ies-plus:before {
+            content: "\f10e"
+        }
+
+        .ies-query:before {
+            content: "\f10f"
+        }
+
+        .ies-remove:before {
+            content: "\f110"
+        }
+
+        .ies-search:before {
+            content: "\f111"
+        }
+
+        .ies-settings:before {
+            content: "\f112"
+        }
+
+        .ies-shopping-bag:before {
+            content: "\f113"
+        }
+
+        .ies-sort-left:before {
+            content: "\f114"
+        }
+
+        .ies-sort-right:before {
+            content: "\f115"
+        }
+
+        .ies-title-decorate-left:before {
+            content: "\f116"
+        }
+
+        .ies-title-decorate-right:before {
+            content: "\f117"
+        }
+
+        .ies-triangle-right:before {
+            content: "\f118"
+        }
+
+        .ies-triangle-top:before {
+            content: "\f119"
+        }
+
+        .ies-video:before {
+            content: "\f11a"
+        }
+    </style>
+    <script>
+        window.CONST = {
+            "utm_campaign": "client_share",
+            "utm_medium": "huoshan_android",
+            "utm_source": "copy_link"
+        } || {};
+    </script>
+    <link rel="stylesheet" href="//s3a.bytecdn.cn/huoshan/resource/reflow/pkg/page/reflow_video_7fd4ce8.css" />
+</head>
+
+<body>
+    <div id="topDlBannerWrapper" class="container-banner" data-app-download-position="hsvideo_top"></div> <input type="hidden" name="shareTitle" value="麻辣海鲜??笨笨??的视频"> <input type="hidden" name="shareDesc" value="这是我私藏的视频。一般人我才不分享！"> <input type="hidden" name="shareTimelineTitle" value="这是我私藏的视频。 一般人我才不分享！"> <input type="hidden" name="shareAppTitle"
+        value="麻辣海鲜??笨笨??的视频"> <input type="hidden" name="ShareAppDesc" value="这是我私藏的视频。一般人我才不分享！"> <input type="hidden" name="shareImage" value="http://p1.pstatp.com/large/999f000d0a3aa21e8420.jpg">
+    <div class="banner-ad hidden"></div>
+    <div class="video-detail-wrap min-height" id="pageletDetail">
+        <div class="video-container">
+            <div class="poster-page">
+                <a href="javascript:;" class="poster-link" data-category="video_reflow" data-label="main" data-action="video_play">
+                    <div class="poster-img" style="background-image:url(http://p1.pstatp.com/large/999f000d0a3aa21e8420.jpg);"></div><span class="play-btn"></span>
+                    <div class="right-ad hidden"></div>
+                </a>
+            </div>
+            <div class="player-container hidden">
+                <div class="player" data-src="http://hotsoon.snssdk.com/hotsoon/item/video/_playback/?video_id=v0200cdc0000bd57ti02sajafosakk6g&amp;line=0&amp;app_id=1112&amp;watermark=1" data-poster-src="http://p1.pstatp.com/large/999f000d0a3aa21e8420.jpg"></div>
+                <div class="player-poster" style="background-image:url(http://p1.pstatp.com/large/999f000d0a3aa21e8420.jpg);"></div><span class="loading-spinner hidden"></span> <span class="play-btn video-play-btn hidden"></span>
+                <div class="replay-mask hidden">
+                    <div class="recommend-list-box js-recommend-list"></div>
+                    <div class="replay-box"><span class="replay-btn">重播</span> <a class="replay-download" href="javascript:;" data-app-download-position="hsvideo_finish">更多精彩视频</a></div>
+                    <div class="guide-up-box"><span class="up-text">上滑看更多</span> <span class="up-icon"></span></div>
+                </div>
+            </div>
+            <div class="user-info-wrap js-user-follow hidden">
+                <div class="user-info clearfix">
+                    <p class="avatar"><img src="http://sf1-hscdn-tos.pstatp.com/img/hotsoon-avatar/3fcca8380c590fbd29d173620d840655d8a23d53519eda12ca71973c6b50fc50~100x100.jpg" alt=""></p>
+                    <div class="user-content">
+                        <p class="nickname"><span> 麻辣海鲜??笨笨?? </span></p>
+                        <p class="short-id"><span>ID: 458840719 </span></p>
+                    </div><a href="javascript:;" class="follow-it-btn">关注</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="recommend-video-wrap" id="pageletRecVideo">
+        <p class="loading-video-tip hidden" data-node="loadingVideoTip">正在加载精彩视频...</p>
+        <div class="video-wrap" data-node="videoListNode"></div>
+    </div> <a href="javascript:;" class="bottom-banner" data-app-download-position="hsvideo_bottom"><span class="text">刷完了*\(^o^)/*，打开「火山小视频」看更多吧</span> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAMAAACrZuH4AAAAM1BMVEUAAAD///////////////////////////////////////////////////////////////+3leKCAAAAEHRSTlMAQPDgEMAwcGAgsKCQgFDQMxAHSQAAALBJREFUOMuNlOEOwyAIhBVEq7Ud7/+0i4uLBdqx75/mEo4TDItaCHhAPYYbIvEF3IIiNVZgFoIMbNm0wLJrgaV8PSA/MXvq/AimTwz8g2Mo9nU+i3YEw4UoW5tteVPGTum7jSLKeuqqDNnm8osXNYBQTApc7lRAk0qeIuK6k1XsLMQ7pyK3arvNJLo1iaWDBU2nHtGkLkItjRXgv74/Qe4UupPsboO7Ue5W/r3Z/u/wBmYDLNxW8zXyAAAAAElFTkSuQmCC" alt=""></a>
+    <script>
+        var GA_CONFIG = {
+                trackingId: "UA-75850242-1" || 'UA-75850242-1', // GA追踪账号 sampleRate: 1, // GA采样率，此处采样流量的1%上报 setDimension: function(urlParamObj) { // 自定义设置维度函数，默认取回所有URL参数 if (urlParamObj && urlParamObj.hs_from) { ga('set', 'dimension1', urlParamObj.hs_from); } if (urlParamObj && urlParamObj.utm_medium) { ga('set', 'dimension2', urlParamObj.utm_medium); } } };
+    </script>
+    <script src="//s3.bytecdn.cn/huoshan/resource/reflow/static/script/base_d867732.js"></script>
+    <script>
+        var tags = {};
+        if (window.Slardar && window.Slardar._baseParams) {
+            tags = {
+                bid: window.Slardar._baseParams.bid,
+                pid: window.Slardar._baseParams.pid
+            }
+        }
+        window.Raven && Raven.config('//key@m.toutiao.com/log/sentry/v2/170', {
+            whitelistUrls: [/bytecdn\.cn/],
+            tags: tags,
+            maxMessageLength: 200
+        }).install();
+    </script> <img id="weixinShareLogo" src="data:image/png;base64,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"
+        style="position:absolute;top:-1000px;left:-1000px;">
+    <script src="//s3.bytecdn.cn/huoshan/resource/reflow/pkg/common_621a9a6.js"></script>
+    <script src="//s3.bytecdn.cn/huoshan/resource/reflow/pkg/page/reflow_video_1cebf5a.js"></script>
+    <script type="text/javascript">
+        (function() {
+            __M.require('reflow:component/reflow_video/share_info_hidden/index');
+        })();
+        (function() {
+            __M.require('reflow:page/reflow_video/index').init({
+                data: {
+                    create_time: 1532891636,
+                    id: "培育和践行社会主义核心价值观",
+                    video: {
+                        real_play_addr: 'http://www.365yg.com/group/6535314323751830030/'
+                    },
+                    author: {
+                        nickname: "富强民主文明和谐",
+                        id: "自由平等公正法治"
+                    },
+                    stats: {
+                        play_count: 666666,
+                        digg_count: 666666,
+                        share_count: 666666,
+                        ticket: 666666,
+                        income: 666666
+                    }
+                },
+                itemId: "6578210230281178382",
+                authorId: "87046748522",
+                video: {
+                    width: 720,
+                    height: 1280,
+                },
+                requestId: "20180730031356010013040026677A23",
+                sharer: {
+                    "city": "",
+                    "fan_ticket_count": 0,
+                    "level": 1,
+                    "gender": 0,
+                    "id_str": "0",
+                    "signature": "",
+                    "nickname": "0",
+                    "id": 0
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
